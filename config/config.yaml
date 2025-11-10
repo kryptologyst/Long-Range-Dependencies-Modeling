@@ -1,0 +1,58 @@
+# Configuration file for Long-range Dependencies Modeling Project
+
+# Data generation parameters
+data:
+  n_samples: 2000
+  noise_scale: 0.1
+  dependency_lags: [30, 60]
+  random_seed: 42
+
+# Model configurations
+models:
+  tcn:
+    input_channels: 1
+    num_channels: [16, 32, 64]
+    kernel_size: 3
+    dropout: 0.1
+    
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.1
+    bidirectional: false
+    
+  transformer:
+    d_model: 64
+    nhead: 8
+    num_layers: 3
+    dropout: 0.1
+    dim_feedforward: 256
+
+# Training parameters
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 50
+  validation_split: 0.2
+  early_stopping_patience: 10
+  device: auto  # auto, cpu, cuda
+
+# Sequence parameters
+sequence:
+  seq_len: 100
+  prediction_horizon: 1
+
+# Visualization settings
+visualization:
+  figure_size: [12, 8]
+  style: seaborn-v0_8
+  save_plots: true
+  plot_format: png
+  dpi: 300
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: logs/training.log
+  console: true
